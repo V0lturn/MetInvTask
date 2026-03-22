@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Мнемосхема ДФ";
+}
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+<div class="container-fluid">
+    <h2 class="text-center my-4">Мнемосхема дробарної фабрики</h2>
+
+    <div class="row">
+        <div class="col-md-9 border bg-dark p-2" id="svg-host">
+            @Html.Raw(System.IO.File.ReadAllText("wwwroot/images/df.svg"))
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Керування фабрикою</h5>
+                </div>
+                <div class="card-body">
+                    <button id="btn-start" class="btn btn-success w-100 mb-2">Запустити (Start)</button>
+                    <button id="btn-stop" class="btn btn-danger w-100" disabled>Зупинити (Stop)</button>
+
+                    <button id="btn-check-api" class="btn btn-outline-primary w-100" style="margin-top: 10px;">
+                        Тестовий API
+                    </button>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mt-3">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">Параметри обладнання</h5>
+                </div>
+                <div class="card-body bg-light">
+                    <div id="default-message" class="text-muted text-center py-3">
+                        <em>Клікніть на агрегат на схемі для перегляду деталей</em>
+                    </div>
+
+                    <div id="equipment-data" style="display: none;">
+                        <h5 id="val-equipment" class="text-primary fw-bold text-center mb-3">-</h5>
+
+                        <ul class="list-group list-group-flush" id="dynamic-parameters">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/getInfo.js" asp-append-version="true"></script>
+}
